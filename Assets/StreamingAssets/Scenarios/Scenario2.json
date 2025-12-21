@@ -1,0 +1,1837 @@
+{
+  "ScenarioName": "Scenario1",
+  "TimingPointsMap": [
+    {
+      "timeSeconds": 120,
+      "points": 3
+    },
+    {
+      "timeSeconds": 300,
+      "points": 2
+    },
+    {
+      "timeSeconds": 600,
+      "points": 1
+    },
+    {
+      "timeSeconds": 99999,
+      "points": 0
+    }
+  ],
+  "Elements": [
+    {
+      "Category": "Opening",
+      "LearnerResponse": [],
+      "Matches": [],
+      "Score": 0,
+      "Answer": [
+        "TransferCenter",
+        "Learner",
+        "Hi, we’ve got Dr. Nate Neo over at Rural Regional who is requesting transfer of a 10 day-old male infant who presented with a fever and poor feeding. Are you ready to connect?"
+      ]
+    },
+    {
+      "Category": "TransferCenter",
+      "LearnerResponse": [
+        "Learner",
+        "TransferCenter",
+        "What's our bed status?"
+      ],
+      "Matches": [
+        "bed",
+        "status",
+        "code",
+        "color"
+      ],
+      "Score": 1,
+      "Answer": [
+        "TransferCenter",
+        "Learner",
+        "We are yellow, we’ll have to speak to the CMO for approval if you think this patient requires admission. "
+      ]
+    },
+    {
+      "Category": "TransferCenter",
+      "LearnerResponse": [
+        "Learner",
+        "TransferCenter",
+        "Ready to connect."
+      ],
+      "Matches": [
+        "ready",
+        "connect",
+        "yes"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Hey Doctor, thanks for taking my call. I’ve got little Pai Rexia, a 10 day-old male who is coming in with a fevers to Tmax 103.1F and poor feeding. He was born at 39w3d and there were no complications with the pregnancy or delivery. He was discharged home at 2 days of life and doing great at that point. Over the last few days, his parents say that he’s been more sleepy and less interested in eating. His pediatrician has noticed that he’s not gained weight in the last 4 days, so they started supplementing with formula. Then he started having fevers last night, so his parents brought him in. He looks pretty sick and I’m worried because we don’t have any pediatricians here. "
+      ],
+      "Function": [
+        "Connect"
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Do they have any past medical history?"
+      ],
+      "Matches": [
+        "past",
+        "medical",
+        "history"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He was born at 39w3d and there were no complications with the pregnancy or delivery. He was discharged home at 2 days of life and doing great at that point. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Do they take any medications daily?"
+      ],
+      "Matches": [
+        "take",
+        "medications",
+        "daily"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Just a vitamin D supplement. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Do they have any surgical history?"
+      ],
+      "Matches": [
+        "surgical",
+        "history"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Nope."
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Is there any relevant family history?"
+      ],
+      "Matches": [
+        "family",
+        "history"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "There is no history of genetic disorders. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Are they up to date on their vaccines?"
+      ],
+      "Matches": [
+        "date",
+        "vaccines",
+        "shots"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He received his hepatitis B vaccine at birth. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Is anyone sick at home? "
+      ],
+      "Matches": [
+        "sickness",
+        "home",
+        "parents condition",
+        "family"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Mom and Dad do not have symptoms and he has not been around anyone else. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have they had any trouble breathing?"
+      ],
+      "Matches": [
+        "trouble",
+        "breathing"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No he has not. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "How is their oral intake?"
+      ],
+      "Matches": [
+        "oral",
+        "intake",
+        "food"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He has been taking about half of his normal amount of supplemented formula over the past day. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have they had any fevers?"
+      ],
+      "Matches": [
+        "fevers",
+        "temperature"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He started having fevers last night. The highest fever was 103.1 rectally. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have they had any vomiting or diarrhea?"
+      ],
+      "Matches": [
+        "vomiting",
+        "diarrhea",
+        "stool"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No he has not. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have there been any changes in urination?"
+      ],
+      "Matches": [
+        "changes",
+        "urination"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He has been making less wet diapers, about 3 in the past 24 hours."
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have they eaten any unusual foods?"
+      ],
+      "Matches": [
+        "eaten",
+        "unusual",
+        "foods"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Nope."
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Do they have any allergies to foods or medications?"
+      ],
+      "Matches": [
+        "allergies",
+        "foods",
+        "medications"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Nope."
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have they had an accidental drug ingestions?"
+      ],
+      "Matches": [
+        "accidental",
+        "drug",
+        "ingestions"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Nope."
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have they had symptoms like this before?"
+      ],
+      "Matches": [
+        "symptoms",
+        "before",
+        "similar symptoms"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Nope."
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have they had any recent head injuries or trauma?"
+      ],
+      "Matches": [
+        "recent",
+        "head",
+        "injuries",
+        "trauma"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No he has not. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Do they have any history of seizures?"
+      ],
+      "Matches": [
+        "history",
+        "seizures"
+      ],
+      "Score": 1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He has never had a seizure. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have they been meeting their developmental milestones?"
+      ],
+      "Matches": [
+        "meeting developmental milestones"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He is only 10 days old. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Are they sexually active?"
+      ],
+      "Matches": [
+        "sexually",
+        "active"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He is only 10 days old. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Does the patient have a history of mental health issues?"
+      ],
+      "Matches": [
+        "history",
+        "mental health issues"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He is only 10 days old. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did they have a normal birth history?"
+      ],
+      "Matches": [
+        "normal",
+        "birth history"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes. He was born at full-term and had no complications."
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "How long did the episode last?"
+      ],
+      "Matches": [
+        "long",
+        "episode",
+        "last"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "I'm not sure what you mean."
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Do they have any symptoms of viral illness?"
+      ],
+      "Matches": [
+        "symptoms",
+        "viral",
+        "illness"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He does not have any congestion, cough, diarrhea, or rashes. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Any history of maternal infections during pregnancy? (Keywords: )"
+      ],
+      "Matches": [
+        "history",
+        "maternal",
+        "infections",
+        "pregnancy",
+        "HSV",
+        "herpes",
+        "GBS",
+        "group B strep",
+        "varicella"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Good question. I didn’t see anything in the delivery summary, but we haven’t asked. I did see that mom was GBS positive and she delivered pretty quickly, so don’t think she got the full course of antibiotics."
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have they had any blood in their stool?"
+      ],
+      "Matches": [
+        "blood",
+        "stool"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No."
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "What was the last time they ate?"
+      ],
+      "Matches": [
+        "last",
+        "time",
+        "ate",
+        "feeds"
+      ],
+      "Score": 1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He last had about an ounce of formula an hour ago. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Any history of jaundice? "
+      ],
+      "Matches": [
+        "history",
+        "jaundice"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Mom has noticed he has looked a little more yellow over the past week. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "What were his vitals on arrival?"
+      ],
+      "Matches": [
+        "vitals",
+        "arrival",
+        "Oxygen saturation",
+        "heart rate",
+        "HR",
+        "hr",
+        "respiratory rate",
+        "RR",
+        "rr",
+        "temperature",
+        "blood pressure",
+        "BP",
+        "bp"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He was pretty tachycardic and febrile."
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "What is the general appearance of the patient?"
+      ],
+      "Matches": [
+        "general",
+        "appearance",
+        "look",
+        "skin"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He’s pretty somnolent. He’ll wake up during my exam, but barely reacted when the nurse placed an IV. And he looks dry. He’s not making tears, lips are dry, and fontanelle is a little sunken. He sounds tachy, but heart otherwise normal and clear breath sounds. No rash, though he does look a little jaundiced on his face and upper chest."
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Anything on HEENT exam?"
+      ],
+      "Matches": [
+        "heent",
+        "exam"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No it was unremarkable. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Anything on respiratory exam?"
+      ],
+      "Matches": [
+        "respiratory",
+        "exam",
+        "Work of breathing",
+        "accessory muscle use",
+        "retractions"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He is breathing comfortably on room air. No accessory muscle use. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Anything on CV exam?"
+      ],
+      "Matches": [
+        "CV",
+        "exam",
+        "cardiovascular",
+        "cv"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No murmurs on exam, but he is tachycardic and his cap refill is 4 seconds. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Anything on abdominal exam?"
+      ],
+      "Matches": [
+        "abdominal",
+        "exam"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Belly is soft, I don't feel any organomegaly. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Anything on skin exam?"
+      ],
+      "Matches": [
+        "skin",
+        "exam"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No rashes, but he is a little jaundiced on his face and upper chest. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Anything on neuro exam?"
+      ],
+      "Matches": [
+        "neurological",
+        "exam"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "It's hard to get much of a neuro exam on his given how sleepy he is. He does have intact reflexes though. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Anything on GU exam?"
+      ],
+      "Matches": [
+        "exam",
+        "GU",
+        "gu",
+        "testicles"
+      ],
+      "Score": 1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Both testicles are descended and he has a well-healing circumcision. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Anything on Psych exam?"
+      ],
+      "Matches": [
+        "psychological",
+        "exam"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No."
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Does the patient seem developmentally appropriate?"
+      ],
+      "Matches": [
+        "developmentally",
+        "appropriate"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He is pretty sleepy, so I can't really speak to his development. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Does the patient appear dehydrated?"
+      ],
+      "Matches": [
+        "patient",
+        "appear",
+        "dehydrated",
+        "hydration"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes - he looks pretty dry.  He is not making tears, his lips are dry, and his fontanelle is a little sunken. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a complete blood count? "
+      ],
+      "Matches": [
+        "complete",
+        "blood",
+        "count",
+        "CBC",
+        "cbc",
+        "hemoglobin",
+        "platelet",
+        "WBC",
+        "WBC with diff",
+        "wbc"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes. He had an elevated WBC but otherwise normal. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a complete metabolic panel?"
+      ],
+      "Matches": [
+        "complete",
+        "metabolic",
+        "panel",
+        "CMP",
+        "basic metabolic panel", "BMP", "bmp",
+        "hepatic function panel", "HFP", "hfp",
+        "renal function panel", "RFP", "rfp",
+        "LFTs",
+        "sodium",
+        "potassium",
+        "glucose",
+        "anion gap",
+        "creatinine",
+        "BUN",
+        "albumin"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes. Normal electrolytes, but we are waiting on the LFTs. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get coags? "
+      ],
+      "Matches": [
+        "coags",
+        "Coagulation studies",
+        "INR",
+        "PT",
+        "PTT",
+        "fibrinogen"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No we did not. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a respiratory viral panel?"
+      ],
+      "Matches": [
+        "get",
+        "respiratory",
+        "viral",
+        "panel",
+        "ERVP",
+        "basic respiratory panel",
+        "COVID",
+        "flu",
+        "RSV"
+      ],
+      "Score": 1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "He was negative for COVID, flu, and RSV. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get an A1C?"
+      ],
+      "Matches": [
+        "a1c",
+        "A1C"
+      ],
+      "Score": -10,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No, and its bad that you asked. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a blood gas?"
+      ],
+      "Matches": [
+        "get",
+        "blood",
+        "gas",
+        "Arterial blood gas",
+        "ABG",
+        "venous blood gas",
+        "VBG"
+      ],
+      "Score": 1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Sorry, our machine for that is down. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a lactate?"
+      ],
+      "Matches": [
+        "lactate"
+      ],
+      "Score": 1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Sorry, our machine for that is down. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get an fractionated bilirubin?"
+      ],
+      "Matches": [
+        "fractionated",
+        "bilirubin"
+      ],
+      "Score": 1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No we did not. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get inflammatory markers? "
+      ],
+      "Matches": [
+        "inflammatory",
+        "markers",
+        "C-reactive protein",
+        "CRP",
+        "erthrocyte sedimentation rate",
+        "ESR"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes. His CRP was 5.3. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get blood cultures?"
+      ],
+      "Matches": [
+        "blood",
+        "cultures"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes but it is in process so I can't give you any results."
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a urinalysis?"
+      ],
+      "Matches": [
+        "get",
+        "urinalysis",
+        "UA"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes, UA was notable for just 1+ blood. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a urine culture?"
+      ],
+      "Matches": [
+        "urine",
+        "culture"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes but it is in process so I can't give you any results."
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get CSF studies?"
+      ],
+      "Matches": [
+        "get",
+        "csf",
+        "studies",
+        "csf"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes - cell count showed elevated WBC and RBCs, but gram stain and culture are in process. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "What is their phototherapy threshold?"
+      ],
+      "Matches": [
+        "phototherapy",
+        "threshold",
+        "light level"
+      ],
+      "Score": 1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "We haven't gotten the bilirubin back yet. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a procalcitonin?"
+      ],
+      "Matches": [
+        "procalcitonin"
+      ],
+      "Score": 1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes it was elevated at 0.62. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get an echo?"
+      ],
+      "Matches": [
+        "echo"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No we did not. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get an EKG?"
+      ],
+      "Matches": [
+        "ekg",
+        "EKG"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes, it looked fine other than some tachycardia. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a head CT?"
+      ],
+      "Matches": [
+        "head",
+        "CT",
+        "ct",
+        "cat"
+      ],
+      "Score": -5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "We did not want to expose him to radiation. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a neck CT?"
+      ],
+      "Matches": [
+        "neck",
+        "CT",
+        "ct",
+        "cat"
+      ],
+      "Score": -5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "We did not want to expose him to radiation. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a chest CT?"
+      ],
+      "Matches": [
+        "chest",
+        "CT",
+        "ct",
+        "cat"
+      ],
+      "Score": -5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "We did not want to expose him to radiation. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a CT abdomen/pelvis?"
+      ],
+      "Matches": [
+        "abdomen",
+        "pelvis",
+        "CT",
+        "ct",
+        "cat"
+      ],
+      "Score": -5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "We did not want to expose him to radiation. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a chest x-ray?"
+      ],
+      "Matches": [
+        "chest",
+        "xray",
+        "x-ray",
+        "X-ray"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes. It looked normal. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get an abdominal x-ray?"
+      ],
+      "Matches": [
+        "abdominal",
+        "xray",
+        "x-ray",
+        "X-ray"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No we did not. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a renal US?"
+      ],
+      "Matches": [
+        "get",
+        "renal",
+        "US",
+        "us"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No we did not. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you ultrasound the area?"
+      ],
+      "Matches": [
+        "ultrasound"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No we did not. "
+      ]
+    },
+    {
+      "Category": "ExamsLabsImaging",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get an MRI brain?"
+      ],
+      "Matches": [
+        "mri",
+        "brain"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "We don't do that here. "
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you repeat vital signs?"
+      ],
+      "Matches": [
+        "repeat",
+        "vital",
+        "signs"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes after the fluid bolus and tylenol, his tachycardia looks better and his fever is down. "
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you give them any fluids?"
+      ],
+      "Matches": [
+        "give",
+        "fluids",
+        "hydration"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes - we gave a 20 ml/kg bolus. "
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you start antibiotics?"
+      ],
+      "Matches": [
+        "antibiotics"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No not yet, we were waiting for culture data. "
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you give anti-pyretics?"
+      ],
+      "Matches": [
+        "antipyretics",
+        "tylenol"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes, we gave 15 mg/kg of tylenol. "
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you give pain medication?"
+      ],
+      "Matches": [
+        "pain",
+        "medication"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Just some tylenol. "
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you give any nausea medications?"
+      ],
+      "Matches": [
+        "nausea",
+        "medications"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No."
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you start them on oxygen? "
+      ],
+      "Matches": [
+        "start",
+        "oxygen"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No."
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you start steroids?"
+      ],
+      "Matches": [
+        "steroids"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No."
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you give them their home seizure medications?"
+      ],
+      "Matches": [
+        "home",
+        "seizure",
+        "medications"
+      ],
+      "Score": -1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No."
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you load them with anything for seizures?"
+      ],
+      "Matches": [
+        "load",
+        "seizures"
+      ],
+      "Score": -1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No."
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you give them any medications for constipation?"
+      ],
+      "Matches": [
+        "medications",
+        "constipation"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No."
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you start them on an insulin drip? "
+      ],
+      "Matches": [
+        "insulin",
+        "drip"
+      ],
+      "Score": -1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No."
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have you supplemented the potassium?"
+      ],
+      "Matches": [
+        "supplemented",
+        "potassium"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No."
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you get a lumbar puncture and send CSF studies?"
+      ],
+      "Matches": [
+        "lumbar",
+        "puncture",
+        "csf",
+        "studies",
+        "CSF"
+      ],
+      "Score": 3,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes we did. "
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Did you start phototherapy?"
+      ],
+      "Matches": [
+        "phototherapy"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "We did not because we don't have the bilirubin back yet. "
+      ]
+    },
+    {
+      "Category": "PriorInterventions",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have you performed nasal suction for secretions?"
+      ],
+      "Matches": [
+        "nasal",
+        "suction",
+        "secretions"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "No, he does not seem congested. "
+      ]
+    },
+    {
+      "Category": "InterventionsAndRecommendations",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Can you powershare any imaging?"
+      ],
+      "Matches": [
+        "powershare",
+        "any",
+        "imaging"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "We aren't able to do that. "
+      ]
+    },
+    {
+      "Category": "InterventionsAndRecommendations",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Can you start IV antibiotics and IV acyclovir? "
+      ],
+      "Matches": [
+        "antibiotics",
+        "acyclovir",
+        "IV",
+        "iv"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes we can do that. We will ask our pharmacist to help. "
+      ]
+    },
+    {
+      "Category": "InterventionsAndRecommendations",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Can you give them an additional 20 ml/kg bolus?"
+      ],
+      "Matches": [
+        "additional",
+        "bolus"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes we can. "
+      ]
+    },
+    {
+      "Category": "InterventionsAndRecommendations",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Have they had a PO challenge?"
+      ],
+      "Matches": [
+        "challenge",
+        "po",
+        "PO"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "We aren't comfortable feeding him with how sleepy he is. "
+      ]
+    },
+    {
+      "Category": "InterventionsAndRecommendations",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Can you start maintenance IV fluids?"
+      ],
+      "Matches": [
+        "maintenance",
+        "fluids"
+      ],
+      "Score": 1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Yes we can do that. "
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Does your hopsital have a pediatric crew that can transport the patient or do you need us to get the patient?"
+      ],
+      "Matches": [
+        "hopsital",
+        "pediatric",
+        "crew",
+        "transport",
+        "patient",
+        "need",
+        "get",
+        "patient"
+      ],
+      "Score": 5,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "We do not have a pediatric team at all, so we would love some help transporting him. "
+      ]
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Happy to accept."
+      ],
+      "Matches": [
+        "accept",
+        "admit",
+        "yes"
+      ],
+      "Score": -20,
+      "Answer": [
+        "CMO",
+        "Learner",
+        "I've just gotten your request for a transfer and I'm sorry but I can't approve. The patient needs to be sent to a PICU."
+      ]
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "This patient is safe for discharge and can go home."
+      ],
+      "Matches": [
+        "no",
+        "discharge",
+        "send home",
+        "admit"
+      ],
+      "Score": -9999,
+      "Answer": [
+        "OSH",
+        "Learner",
+        "I'm not sending this patient home."
+      ],
+      "Function": ["EndScenario"]
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Please observe the patient closely and call us back if needed."
+      ],
+      "Matches": [
+        "no",
+        "observe",
+        "send home",
+        "admit"
+      ],
+      "Score": -20,
+      "Answer": [
+        "OSH",
+        "Learner",
+        "I'm not conformable with that. He needs to go somewhere with pediatrics ASAP doctor."
+      ]
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "This patient needs to be sent to the PICU"
+      ],
+      "Matches": [
+        "PICU",
+        "picu",
+        "admit"
+      ],
+      "Score": 20,
+      "Answer": [
+        "TransferCenter",
+        "Learner",
+        "Sure. It looks like we still have a few PICU beds. Dr. Neo, we’ll connect you now."
+      ],
+      "Function": ["EndScenario"]
+    }
+  ]
+}

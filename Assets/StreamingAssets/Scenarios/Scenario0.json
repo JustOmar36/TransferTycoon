@@ -1,0 +1,193 @@
+{
+  "ScenarioName": "Tutorial",
+  "TimingPointsMap": [
+    {
+      "timeSeconds": 120,
+      "points": 3
+    },
+    {
+      "timeSeconds": 300,
+      "points": 2
+    },
+    {
+      "timeSeconds": 600,
+      "points": 1
+    },
+    {
+      "timeSeconds": 99999,
+      "points": 0
+    }
+  ],
+  "Elements": [
+    {
+      "Category": "Opening",
+      "LearnerResponse": [],
+      "Matches": [],
+      "Score": 0,
+      "Answer": [
+        "TransferCenter",
+        "Learner",
+        "Good day, transfer center here, my name is Syd. I have in my notes here that this is your first time taking a transfer call using the new TYCOON system. No worries I'll walk you through the basic functionality now. \n\nThe first thing you should do is ask me about bed status.  To do so use the dropdown at the bottom right of this screen to select \"Transfer Center\" then type a keyword, such as \"status\" into the search bar. That should bring up all questions you can ask the transfer center that relate to your keyword. From there, just click on the question about bed status."
+      ]
+    },
+    {
+      "Category": "TransferCenter",
+      "LearnerResponse": [
+        "Learner",
+        "TransferCenter",
+        "What's our bed status?"
+      ],
+      "Matches": [
+        "bed",
+        "status",
+        "code",
+        "color"
+      ],
+      "Score": 1,
+      "Answer": [
+        "TransferCenter",
+        "Learner",
+        "We are green.\n\nBed status can change regularly, so its best to check in at the start of every call. \n\nIn order to talk with the OSH about the patient, you need to tell me to connect you. Use the dropdown and search box again to tell me you are ready to connect.\n\nAre you ready to connect?"
+      ]
+    },
+    {
+      "Category": "TransferCenter",
+      "LearnerResponse": [
+        "Learner",
+        "TransferCenter",
+        "Ready to connect."
+      ],
+      "Matches": [
+        "ready",
+        "connect",
+        "yes"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "Doctor Syd here. Usually the OSH doctor would tell you details about the patient here but I'm just walking you through the software right now. Now that you are connected with the OSH you can ask them for any details you want regarding the patient. \n\nThere are several categories you use to do this, all visible in the dropdown. \nUse \"Present Illness/Medical History\" to ask about the patients pre-existing and current conditions. \n\"Exam, Labs, and Imaging\" is for asking for the results of any labs the doctor has done; Sometimes they forget to send those over as part of the transfer process. \n\"Prior Interventions\" is for asking if the doctor has taken specific steps already to help the patient. \nFinally, use \"Recommend Interventions\" to tell the OSH to take certain actions with the patient, such as hydrating them. \n\nFor now, use \"Present Illness/Medical History\" to ask about the patient's vitals. "
+      ],
+      "Function": [
+        "Connect"
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "What are the patient's vitals?"
+      ],
+      "Matches": [
+        "patients",
+        "vitals",
+        "sats",
+        "HR",
+        "RR"
+      ],
+      "Score": 1,
+      "Answer": [
+        "OSH Doctor",
+        "Learner",
+        "I'll upload those to you now. \n\nIn the top left of your screen you can see a button to access patient info. Use that to view some basic info on the patient as well as any vitals, labs, or imaging that's been uploaded to the system. \n\nIn order to end each call you need to make a decision about what will happen with the patient. This is called your \"Disposition\" decision. View the vitals in the patient info panel now and, when you are ready, go ahead and admit this patient. "
+      ],
+      "Child": [
+        {
+          "Category": "VitalSigns",
+          "LearnerResponse": [],
+          "Matches": [],
+          "Answer": [
+            "Vital Signs",
+            "Learner",
+            "{\"HR\":130,\"BP\":\"90/50\",\"RR\":18,\"SpO2\":\"97%\",\"FiO2\":\"97%\",\"Temp\":\"40 C\",\"GCS\":15,\"Weight\":\"3kg\"}"
+          ],
+          "Score": 0
+        }
+      ]
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": [
+        "Learner",
+        "TransferCenter",
+        "Happy to admit."
+      ],
+      "Matches": [
+        "happy",
+        "admit"
+      ],
+      "Score": 5,
+      "Answer": [
+        "TransferCenter",
+        "Learner",
+        "Great! You are ready to go! It looks like you have a call coming in now, good luck!"
+      ],
+      "Function": [
+        "FinishTutorial"
+      ]
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "This patient is safe for discharge and can go home."
+      ],
+      "Matches": [
+        "no",
+        "discharge",
+        "send home",
+        "admit"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH",
+        "Learner",
+        "That's not what I asked you to select doctor."
+      ]
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "Please observe the patient closely and call us back if needed."
+      ],
+      "Matches": [
+        "no",
+        "observe",
+        "send home",
+        "admit"
+      ],
+      "Score": 0,
+      "Answer": [
+        "OSH",
+        "Learner",
+        "Very funny, now please just select admit patient."
+      ]
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": [
+        "Learner",
+        "OSH Doctor",
+        "This patient needs to be sent to the PICU"
+      ],
+      "Matches": [
+        "PICU",
+        "picu",
+        "admit"
+      ],
+      "Score": 0,
+      "Answer": [
+        "TransferCenter",
+        "Learner",
+        "Ok, despite that not being what I asked for you clearly get the instructions. It looks like you have a call coming in now, good luck!"
+      ],
+      "Function": [
+        "FinishTutorial"
+      ]
+    }
+  ]
+}

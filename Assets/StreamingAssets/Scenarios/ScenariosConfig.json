@@ -1,0 +1,8 @@
+{
+  "scenarioFiles": [
+    "Scenario0.json",
+    "Scenario1.json",
+    "Scenario2.json"
+  ],
+  "otherConfigSettings": "..."
+}

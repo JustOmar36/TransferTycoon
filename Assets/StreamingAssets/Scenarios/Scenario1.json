@@ -1,0 +1,138 @@
+{
+  "ScenarioName": "Asthma Exacerbation - Pediatric Transfer",
+  "TimingPointsMap": [
+    {"timeSeconds": 120, "points": 3},
+    {"timeSeconds": 300, "points": 2},
+    {"timeSeconds": 600, "points": 1},
+    {"timeSeconds": 99999, "points": 0}
+  ],
+  "Elements": [
+    {
+      "Category": "Opening",
+      "LearnerResponse": [],
+      "Matches": [],
+      "Answer": ["TransferCenter", "Learner", "Hey! I have a 10 yo girl at Wheezley Long with an asthma exacerbation. Sounds like they gave her three duonebs and some dexamethasone. They don’t have pediatrics and are seeking transfer. Are you ready to connect?"],
+      "Score": 0
+    },
+    {
+      "Category": "TransferCenter",
+      "LearnerResponse": ["Learner", "TransferCenter", "What's our bed status?"],
+      "Matches": ["capacity", "bed status", "how many beds", "color"],
+      "Answer": ["TransferCenter", "Learner", "We are green, plenty of beds."],
+      "Score": 1
+    },
+    {
+      "Category": "TransferCenter",
+      "LearnerResponse": ["Learner", "TransferCenter", "Ready to connect."],
+      "Matches": ["connect", "yes", "ready"],
+      "Answer": ["OSH Doctor", "Learner", "Hey this is Dr. Al Buterol from the Wheezley ER. I have a 10 yo here with a history of asthma here for an asthma exacerbation. Negative viral studies. We gave her three duo-nebs and still sounds pretty wheezy so I think she needs to come to you guys. She was admitted to your PICU last respiratory season."],
+      "Score": 0,
+      "Function": ["Connect"]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": ["Learner", "OSH Doctor", "Can you tell me more about the reason for presentation?"],
+      "Matches": ["reason", "presentation", "why", "what happened", "what brings her here"],
+      "Answer": ["OSH Doctor", "Learner", "10 yo girl at Wheezley Long with an asthma exacerbation. They gave her three duo-nebs and dexamethasone. No peds at OSH."],
+      "Score": 1
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": ["Learner", "OSH Doctor", "Can you tell me more about her past medical history or admissions?"],
+      "Matches": ["admission", "past medical", "history"],
+      "Answer": ["OSH Doctor", "Learner", "She was admitted to your PICU last respiratory season."],
+      "Score": 1
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": ["Learner", "OSH Doctor", "Were any viral studies done?"],
+      "Matches": ["viral", "RSV", "COVID", "flu"],
+      "Answer": ["OSH Doctor", "Learner", "Negative viral studies."],
+      "Score": 1
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": ["Learner", "OSH Doctor", "What are her vital signs?"],
+      "Matches": ["vitals", "sats", "heart rate", "BP", "respiratory rate"],
+      "Answer": ["OSH Doctor", "Learner", "Satting 92 on RA, HR 150s, RR 30, BP 101/72."],
+      "Score": 1,
+      "Child": [
+        {
+          "Category": "VitalSigns",
+          "LearnerResponse": [],
+          "Matches": [],
+          "Answer": ["Vital Signs", "Learner", "{\"SpO2\": \"92% on RA\", \"HR\": 150, \"RR\": 30, \"BP\": \"101/72\"}"],
+          "Score": 0
+        }
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": ["Learner", "OSH Doctor", "Did you obtain any labs?"],
+      "Matches": ["labs", "cbc", "test results"],
+      "Answer": ["OSH Doctor", "Learner", "WBC 13, no bandemia. CRP mildly elevated."],
+      "Score": 1,
+      "Child": [
+        {
+          "Category": "LabResult",
+          "LearnerResponse": [],
+          "Matches": [],
+          "Answer": ["XXX Lab", "Learner", "{\"WBC\": 13, \"Bandemia\": \"No\", \"CRP\": \"mildly elevated\"}"],
+          "Score": 0
+        }
+      ]
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": ["Learner", "OSH Doctor", "Can you describe her respiratory exam?"],
+      "Matches": ["respiratory exam", "wheezing", "retractions", "work of breathing"],
+      "Answer": ["OSH Doctor", "Learner", "She looks uncomfortable with intercostal retractions and diffuse wheezing."],
+      "Score": 1
+    },
+    {
+      "Category": "PresentIllnessHistory",
+      "LearnerResponse": ["Learner", "OSH Doctor", "When did she last receive albuterol or a duoneb?"],
+      "Matches": ["when last albuterol", "last duoneb", "last treatment"],
+      "Answer": ["OSH Doctor", "Learner", "Last duoneb about 1.5 hours ago."],
+      "Score": 1
+    },
+    {
+      "Category": "InterventionsAndRecommendations",
+      "LearnerResponse": ["Learner", "OSH Doctor", "What interventions have already been done, and what do you recommend?"],
+      "Matches": ["interventions", "what has been done", "any labs", "what do you recommend"],
+      "Answer": ["OSH Doctor", "Learner", "Three duo-neb treatments, dexamethasone given. Needs admission."],
+      "Score": 1
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": ["Learner", "TransferCenter", "The patient needs higher level of care at PICU."],
+      "Matches": ["PICU", "higher level", "intensive care"],
+      "Answer": ["TransferCenter", "Learner", "The patient will be evaluated for transfer to the PICU."],
+      "Score": 1,
+      "Function": ["EndScenarioAndRecordScores"]
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": ["Learner", "TransferCenter", "The patient can be admitted to the floor."],
+      "Matches": ["admit to floor", "floor admission", "general peds"],
+      "Answer": ["TransferCenter", "Learner", "The patient will be evaluated for floor admission."],
+      "Score": 0,
+      "Function": ["EndScenarioAndRecordScores"]
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": ["Learner", "TransferCenter", "The patient requires consultation."],
+      "Matches": ["consult", "needs consult", "needs specialist"],
+      "Answer": ["TransferCenter", "Learner", "A consultation will be considered."],
+      "Score": 0
+    },
+    {
+      "Category": "Disposition",
+      "LearnerResponse": ["Learner", "TransferCenter", "There is no indication for admission."],
+      "Matches": ["no admission", "discharge", "stable for home"],
+      "Answer": ["TransferCenter", "Learner", "The patient will be evaluated for safe discharge."],
+      "Score": 0,
+      "Function": ["EndScenarioAndRecordScores"]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+    "description": "Main Configuration",
+    "scenarioCount": 3,
+    "scenarioFiles": [
+        "Scenario1.json",
+        "Scenario2.json",
+        "Scenario3.json"
+    ]
+}
