@@ -12,8 +12,7 @@ public class GameBackend : MonoBehaviour
     public event Action OnScenariosLoaded;
     public bool IsReady { get; private set; } = false;
 
-    public GameObject pc;
-    private PCScript _pcScript;
+    private PCScript pcSCript;
 
     // --- DATA STRUCTURES ---
     private List<ScenarioScoreSummary> scenarioSummaries = new List<ScenarioScoreSummary>();
@@ -53,6 +52,8 @@ public class GameBackend : MonoBehaviour
 
     void Awake()
     {
+        pcSCript = FindFirstObjectByType<PCScript>();
+
         sessionStartTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -243,7 +244,10 @@ public class GameBackend : MonoBehaviour
         if (element.Child != null)
         {
             foreach (var child in element.Child)
+            {
                 GatherElementTree(child, collector);
+                Debug.Log($"Gathered child element: {child.Category}");
+            }
         }
     }
 
@@ -417,37 +421,35 @@ public class GameBackend : MonoBehaviour
             }
         }
 
-        // Coroutine for each function call (if Function list exists)
-        // if (el.Function != null)
-        // {
-        //     foreach (string functionName in el.Function)
-        //     {
-        //         StartCoroutine(CallScenarioFunction(functionName));
-        //     }
-        // }
+        // Need to make sure bed status question is only recorded once.
+        if (el.Category == "TransferCenter" && el.LearnerResponse[2] == "What's our bed status?")
+        {
+            if (currentScenarioSummary.BedStatusAsked == BedStatusAsked.NotAsked)
+            {
+                RecordBedStatusAsked(pcSCript.Connected);
+                Debug.Log($"Recording bed status question timing. Connected: {pcSCript.Connected}");
+            }
+            else
+            {
+                Debug.LogWarning("Bed status question already recorded; skipping.");
+            }
+        }
     }
 
-    // Coroutine dispatcher for all allowed dynamic scenario functions
-    private System.Collections.IEnumerator CallScenarioFunction(string functionName)
+    public void RecordBedStatusAsked(bool isCallAlreadyConnected)
     {
-        switch (functionName)
+        if (currentScenarioSummary == null)
         {
-            case "RemoveBedQuery":
-                RemoveBedQuery();
-                break;
-            // Add more functions as needed here
-            default:
-                Debug.LogWarning($"Unknown scenario function: {functionName}");
-                break;
+            Debug.LogError("RecordBedStatusAsked called but current ScenarioSummary is null!");
+            return;
         }
-        yield return null;
-    }
 
     // Remove the TransferCenter-BedQuery element from visibleElements
     private void RemoveBedQuery()
     {
         visibleElements.RemoveAll(e => e.Category == "TransferCenter-BedQuery");
-        Debug.Log("Removed TransferCenter-BedQuery element from visibleElements.");
+        else
+            currentScenarioSummary.BedStatusAsked = BedStatusAsked.AskedBeforeConnected;
     }
 
     public void EndSessionAndSave()
@@ -496,8 +498,7 @@ public class GameBackend : MonoBehaviour
     }
 
     public void EndScenario(){
-        _pcScript = pc.GetComponent<PCScript>();
-        _pcScript.EndScenario();
+    {
     }
 
 }

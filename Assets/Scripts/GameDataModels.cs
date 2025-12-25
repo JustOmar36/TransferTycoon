@@ -1,7 +1,14 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using UnityEngine;
+
+// Used for scoring when a player asks about bed status.
+public enum BedStatusAsked
+{
+    NotAsked, // Default
+    AskedAfterConnected,
+    AskedBeforeConnected
+}
 
 // --------- Universal Game Element Data Structure ---------
 [Serializable]
@@ -46,7 +53,6 @@ public class ScenariosConfig
 }
 
 // --------- Scenario Score Summary ---------
-// --------- Scenario Score Summary ---------
 [Serializable]
 public class ScenarioScoreSummary
 {
@@ -64,7 +70,9 @@ public class ScenarioScoreSummary
     public int TotalPoints;
     public int TotalMax;
     public float timeElapsedSeconds;
-    
+
+    public BedStatusAsked BedStatusAsked;
+
     // ADD THIS FIELD:
     public List<Element> VisibleElements = new List<Element>();
 }
