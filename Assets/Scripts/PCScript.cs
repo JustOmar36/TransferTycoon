@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
+
 // For preserving methods called via Invoke
 using UnityEngine.Scripting;
 
@@ -60,8 +58,10 @@ public class PCScript : MonoBehaviour
 
     //used to display time in the upper right corner. The backend is tracking time independently
     private double _timer = 0.0;
+
     //boolean for tracking if the player is connected to the OSH or not
     private bool _connected = false;
+    public bool Connected => _connected;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     IEnumerator Start()
@@ -204,6 +204,8 @@ public class PCScript : MonoBehaviour
 
             if (found == false)
             {
+                // THIS SHOULD BE AN ERROR AND SHOULD NEVER HAPPEN?!
+                Debug.LogError("No matching element found for input: " + input);
                 AddText("OSH", "I'm not sure what you mean.");
             }
         }
