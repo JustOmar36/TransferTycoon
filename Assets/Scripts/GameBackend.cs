@@ -344,8 +344,6 @@ public class GameBackend : MonoBehaviour
         sessionTotalTime += elapsed;
     }
 
-
-
     public List<KeyValuePair<string, string>> GetVitalSigns()
     {
         var result = new List<KeyValuePair<string, string>>();
@@ -450,6 +448,15 @@ public class GameBackend : MonoBehaviour
         Debug.Log("Removed TransferCenter-BedQuery element from visibleElements.");
     }
 
+    // reset points to zero
+    public void exitScenario() {
+        foreach (var items in scenarioSummaries)
+        {
+            items.TotalPoints = 0;
+            items.TotalMax = 0;
+        }
+    }
+
     public void EndSessionAndSave()
     {
         int totalEarned = 0, totalMax = 0;
@@ -500,4 +507,14 @@ public class GameBackend : MonoBehaviour
         _pcScript.EndScenario();
     }
 
+    // ===================================================================================
+    // HELPER FUNCTIONS
+    // ===================================================================================
+    public Dictionary<int, ScenarioFileData> GetScenariosTable() {
+        return scenarioFiles;
+    }
+
+    public PCScript GetPCScript() { 
+        return pc.GetComponent<PCScript>();
+    }
 }

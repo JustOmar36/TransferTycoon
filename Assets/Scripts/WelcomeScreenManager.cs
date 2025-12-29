@@ -9,9 +9,9 @@ public class WelcomeScreenManager : MonoBehaviour
     public Button startButton;
     public TMP_InputField nameInputField;
 
-    public Toggle easyToggle;
-    public Toggle mediumToggle;
-    public Toggle hardToggle;
+    //public Toggle easyToggle;
+    //public Toggle mediumToggle;
+    //public Toggle hardToggle;
 
     public Button confirmButton;
 
@@ -27,7 +27,7 @@ public class WelcomeScreenManager : MonoBehaviour
 
     void OnStartClicked()
     {
-        SceneManager.LoadScene("GameplayScene");
+        //SceneManager.LoadScene("GameplayScene");
         startButton.gameObject.SetActive(false);
         nameDifficultyPanel.SetActive(true);
     }
@@ -42,21 +42,10 @@ public class WelcomeScreenManager : MonoBehaviour
             return;
         }
 
-        if (easyToggle.isOn)
-            difficulty = "Easy";
-        else if (mediumToggle.isOn)
-            difficulty = "Medium";
-        else if (hardToggle.isOn)
-            difficulty = "Hard";
-        else
-        {
-            Debug.LogWarning("Please select a difficulty.");
-            return;
-        }
 
-        Debug.Log($"Player Name: {playerName}, Difficulty: {difficulty}");
+        Debug.Log($"Player Name: {playerName}");
         // Proceed to load your game scene or start gameplay.
         // Example:
-        // SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("GameplayScene");
     }
 }

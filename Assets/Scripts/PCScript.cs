@@ -25,11 +25,11 @@ public class PCScript : MonoBehaviour
         Labs,
         Imaging
     }
-    
+
     //time (in s) between each letter appearing
     //this is the default value here, edit this in scene to edit the scene value
-    public double speakingDelay = 0.45;
-    
+    public double speakingDelay = 1;
+
     [Header("Connections")] //holds all connections to other gameobjects in the scene. If you create a new scene with this script all these need to be connected in the scene
     public GameObject canvas;
     public GameObject textContainer;
@@ -45,14 +45,17 @@ public class PCScript : MonoBehaviour
     public GameObject labsInfo;
     public GameObject endScreen;
     public GameObject backend;
-    
+
     private TextMeshProUGUI _textMesh;
     private TextMeshProUGUI _patientTextMesh;
     private GameBackend _gameBackend;
     private bool TextFinished = true;
 
+    [Header("Scenario Selection UI")]
+    [SerializeField] GameObject LevelPanel;
+
     //holds all the text that still needs to be added to the screen
-    private List<(string, TextAddTypes)> _textToAdd =  new List<(string, TextAddTypes)>();
+    private List<(string, TextAddTypes)> _textToAdd = new List<(string, TextAddTypes)>();
     private Panel _activePanel = Panel.Vitals;
 
     //used to display time in the upper right corner. The backend is tracking time independently
@@ -73,19 +76,9 @@ public class PCScript : MonoBehaviour
 
         _textMesh = textContainer.GetComponent<TextMeshProUGUI>();
         _patientTextMesh = patientName.GetComponent<TextMeshProUGUI>();
-        
+
         ClearText();
 
-        
-        _gameBackend.StartScenario(0);
-        for (int i = 0; i < _gameBackend.visibleElements.Count; i++)
-        {
-            if (_gameBackend.visibleElements[i].Category == "Opening")
-            {
-                AddText(_gameBackend.visibleElements[i].Answer[0], _gameBackend.visibleElements[i].Answer[2]);
-            }
-        }
-        
     }
 
     void HandleScenariosLoaded()
@@ -93,13 +86,23 @@ public class PCScript : MonoBehaviour
         // Always unsubscribe from events!
         _gameBackend.OnScenariosLoaded -= HandleScenariosLoaded;
         Debug.Log("Scenarios downloaded. Starting game.");
-        InitializeGame();
     }
 
-    void InitializeGame()
+    public void InitializeGame(int scenarioID)
     {
+        HandleScenariosLoaded();
         // NOW it is safe to ask for data
-        _gameBackend.StartScenario(0);
+        _gameBackend.StartScenario(scenarioID);
+        LevelPanel.SetActive(false);
+        canvas.SetActive(true);
+        
+        for (int i = 0; i < _gameBackend.visibleElements.Count; i++)
+        {
+            if (_gameBackend.visibleElements[i].Category == "Opening")
+            {
+                AddText(_gameBackend.visibleElements[i].Answer[0], _gameBackend.visibleElements[i].Answer[2]);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -113,13 +116,14 @@ public class PCScript : MonoBehaviour
             AddNext();
         }
     }
-    
+
     //effectively turns the in game computer on and off by enabiling/disabling the canvas that everything on the screen is children of
     public void TogglePower()
     {
         canvas.SetActive(!canvas.activeSelf);
     }
-    
+
+
     #region player input
 
     [Preserve]
@@ -225,12 +229,19 @@ public class PCScript : MonoBehaviour
 
         AudioUIManager.Instance.PlayScorePageBGM();
     }
-    
+
+    public void ExitScenario() { 
+        _gameBackend.exitScenario();
+        ClearText();
+        LevelPanel.SetActive(true);
+        canvas.SetActive(false);
+    }
+
     #endregion player input
-    
+
     #region inputFunctions
     // all functions that are called as a result of function calls in scenario elements
-    
+
     //ends the tutorial (Do not call if not in the tutorial!)
     public void FinishTutorial()
     {
@@ -393,7 +404,5 @@ public class PCScript : MonoBehaviour
         ChangePanel(Panel.Imaging);
     }
     #endregion patientInfo
-    
-    
     
 }
