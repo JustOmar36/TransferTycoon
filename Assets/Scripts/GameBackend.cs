@@ -12,7 +12,7 @@ public class GameBackend : MonoBehaviour
     public event Action OnScenariosLoaded;
     public bool IsReady { get; private set; } = false;
 
-    private PCScript pcSCript;
+    private PCScript pcScript;
 
     // --- DATA STRUCTURES ---
     private List<ScenarioScoreSummary> scenarioSummaries = new List<ScenarioScoreSummary>();
@@ -52,7 +52,7 @@ public class GameBackend : MonoBehaviour
 
     void Awake()
     {
-        pcSCript = FindFirstObjectByType<PCScript>();
+        pcScript = FindFirstObjectByType<PCScript>();
 
         sessionStartTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
@@ -424,8 +424,8 @@ public class GameBackend : MonoBehaviour
         {
             if (currentScenarioSummary.BedStatusAsked == BedStatusAsked.NotAsked)
             {
-                RecordBedStatusAsked(pcSCript.Connected);
-                Debug.Log($"Recording bed status question timing. Connected: {pcSCript.Connected}");
+                RecordBedStatusAsked(pcScript.Connected);
+                Debug.Log($"Recording bed status question timing. Connected: {pcScript.Connected}");
             }
             else
             {
@@ -442,10 +442,8 @@ public class GameBackend : MonoBehaviour
             return;
         }
 
-    // Remove the TransferCenter-BedQuery element from visibleElements
-    private void RemoveBedQuery()
-    {
-        visibleElements.RemoveAll(e => e.Category == "TransferCenter-BedQuery");
+        if (isCallAlreadyConnected)
+            currentScenarioSummary.BedStatusAsked = BedStatusAsked.AskedAfterConnected;
         else
             currentScenarioSummary.BedStatusAsked = BedStatusAsked.AskedBeforeConnected;
     }
@@ -504,8 +502,9 @@ public class GameBackend : MonoBehaviour
 #endif
     }
 
-    public void EndScenario(){
+    public void EndScenario()
     {
+        pcScript.EndScenario();
     }
 
     // ===================================================================================
@@ -513,9 +512,5 @@ public class GameBackend : MonoBehaviour
     // ===================================================================================
     public Dictionary<int, ScenarioFileData> GetScenariosTable() {
         return scenarioFiles;
-    }
-
-    public PCScript GetPCScript() { 
-        return pc.GetComponent<PCScript>();
     }
 }

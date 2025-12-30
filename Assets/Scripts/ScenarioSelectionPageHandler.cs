@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScenarioSelectionPageHandler : MonoBehaviour
@@ -19,7 +14,18 @@ public class ScenarioSelectionPageHandler : MonoBehaviour
 
     private Dictionary<int, ScenarioFileData> scenarioFiles = new Dictionary<int, ScenarioFileData> ();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private PCScript pcScript;
+
+
+    private void Awake()
+    {
+        pcScript = FindFirstObjectByType<PCScript>();
+        if (pcScript == null)
+        {
+            Debug.LogError("ScenarioSelectionPageHandler: PCScript not found in the scene during Awake. Check scene setup.");
+        }
+    }
+
     void Start()
     {
         scenarioFiles = _gameBackend.GetScenariosTable();
@@ -32,22 +38,6 @@ public class ScenarioSelectionPageHandler : MonoBehaviour
         {
             Debug.LogError("ScenarioSelectionPageHandler: _gameBackend is not assigned in the Inspector.");
             return;
-        }
-
-        // Try to get PCScript instance from the backend's `pc` GameObject
-        PCScript pcScript = _gameBackend.GetPCScript();
-        if (pcScript == null)
-        {
-            pcScript = UnityEngine.Object.FindFirstObjectByType<PCScript>();
-            if (pcScript != null)
-            {
-                Debug.LogWarning("PCScript was not set on GameBackend.pc; found a PCScript in the scene as fallback.");
-            }
-        }
-
-        if (pcScript == null)
-        {
-            Debug.LogWarning("GameBackend or GameBackend.pc is not assigned. Click listeners will not be wired.");
         }
 
         foreach (var item in scenarioFiles)
