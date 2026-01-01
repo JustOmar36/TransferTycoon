@@ -40,12 +40,12 @@ public class PCPlayerInput : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && _interacting == true && questionInput.GetComponent<TMP_InputField>().text != "")
+        if (_interacting == true && questionInput.GetComponent<TMP_InputField>().text != "")
         {
             ShowOptions();
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && _interacting == false)
+        if (Input.GetKeyDown(KeyCode.Mouse0) || _interacting == false || questionInput.GetComponent<TMP_InputField>().text == "")
         {
             DisableOptions();
         }
