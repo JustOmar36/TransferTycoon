@@ -95,7 +95,8 @@ def get_scenario_metadata(ws):
         "bed_status": "", # Must be one of: "red", "yellow", "green"
         "bed_status_text": "",
         "introduction_transfer_center": "",
-        "introduction_osh_doctor": ""
+        "introduction_osh_doctor": "",
+        "timing_gates": {} # Increasing number of gates, each with a time in minutes
     }
 
     row = get_row_given_col_value(ws, "Scenario Name")
@@ -106,6 +107,20 @@ def get_scenario_metadata(ws):
     scenario_metadata["scenario_description"] = ws.cell(row=row+1, column=2).value
     scenario_metadata["bed_status"] = ws.cell(row=row+2, column=2).value
     scenario_metadata["bed_status_text"] = ws.cell(row=row+2, column=3).value
+
+    # Timing gates
+    # Minutes for 3 gates are in row+3, columns B, C, D
+    # Points are in row+4, columns B, C, D
+    timing_gates = []
+    for i in range(2, 5):
+        gate_time = ws.cell(row=row+3, column=i).value
+        gate_points = ws.cell(row=row+4, column=i).value
+        if gate_time is not None and gate_points is not None:
+            timing_gates.append({
+                "time_mins": gate_time,
+                "points": gate_points
+            })
+    scenario_metadata["timing_gates"] = timing_gates
 
     # Basic validation of bed status
     valid_bed_status = ["red", "yellow", "green"]
