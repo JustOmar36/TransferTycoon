@@ -1,0 +1,530 @@
+{
+    "metadata": {
+        "scenario_name": "Scenario 1",
+        "scenario_description": "4 year old swallowed magnets.",
+        "bed_status": "green",
+        "bed_status_text": "We are green, we have space available to take this patient.",
+        "introduction_transfer_center": "Hey there doctor. I've got a 4-year-old female who they're trying to admit from an OSH because she swallowed a magnet. Let me know when you're ready to connect.",
+        "introduction_osh_doctor": "Hi, thanks for taking my call. I've got a previously healthy 4-year-old female who was brought in by her parents after they saw her swallow three fridge magnets. Apparently, the magnets looked like Skittles. So far she's been acting fine."
+    },
+    "dispositions": [
+        {
+            "disposition_name": "Admit",
+            "is_correct": true,
+            "is_emtala_violation": false,
+            "learner_text": "Yes, happy to accept.",
+            "responses": [
+                {
+                    "responder_name": "Transfer Center",
+                    "responder_text": "Ok thanks everyone."
+                }
+            ]
+        },
+        {
+            "disposition_name": "Send Home",
+            "is_correct": false,
+            "is_emtala_violation": true,
+            "learner_text": "No, this patient is safe for discharge home with close PCP follow-up.",
+            "responses": [
+                {
+                    "responder_name": "OSH Doctor",
+                    "responder_text": "I don't think that is safe. We'd rather she be managed somewhere that GI and surgery could monitor her."
+                }
+            ]
+        },
+        {
+            "disposition_name": "PICU",
+            "is_correct": false,
+            "is_emtala_violation": false,
+            "learner_text": "I think the patient needs an ICU level of care.",
+            "responses": [
+                {
+                    "responder_name": "Transfer Center",
+                    "responder_text": "I don't see an ICU indication for this patient."
+                }
+            ]
+        },
+        {
+            "disposition_name": "Consult",
+            "is_correct": true,
+            "is_emtala_violation": false,
+            "learner_text": "Please talk to the on-call GI fellow about if they will approve the transfer. If they approve, we can admit.",
+            "responses": [
+                {
+                    "responder_name": "GI Fellow",
+                    "responder_text": "I agree that this kid should come to Duke. Please keep her NPO and we will review her imaging when she gets here. "
+                },
+                {
+                    "responder_name": "Transfer Center",
+                    "responder_text": "Sounds good, thanks everyone."
+                }
+            ]
+        },
+        {
+            "disposition_name": "Consult",
+            "is_correct": false,
+            "is_emtala_violation": false,
+            "learner_text": "Please call the pediatric general surgeon.",
+            "responses": [
+                {
+                    "responder_name": "Pediatric Surgeon",
+                    "responder_text": "There is no surgical indication at this time."
+                }
+            ]
+        }
+    ],
+    "patient_info": {
+        "vitals_t1": {
+            "Weight": "18 kg",
+            "Temp": "37 C",
+            "Heart Rate": "92",
+            "Blood Pressure": "98/66",
+            "Respiratory Rate": "22",
+            "SpO2": "99%"
+        },
+        "vitals_t2": {
+            "Weight": null,
+            "Temp": null,
+            "Heart Rate": null,
+            "Blood Pressure": null,
+            "Respiratory Rate": null,
+            "SpO2": null
+        },
+        "labs_t1": {},
+        "labs_t2": {},
+        "Patient Info - Imaging Abd XR": {
+            "imaging_name": "Abdominal X-Ray",
+            "imaging_description": "Abdominal X-Ray: \n\nBowel gas pattern: Non-obstructive; normal distribution of gas throughout small and large bowel. \nForeign bodies: Three radiopaque, rounded objects consistent with magnets (approximate size of small candies):  Two magnets are seen in the left upper quadrant, likely within the stomach, in direct apposition to each other. One magnet is visualized in the mid-abdomen, likely within the distal small bowel or proximal colon. \nNo evidence of free intraperitoneal air to suggest perforation. \nNo abnormal soft tissue calcifications. \nBones: No acute osseous abnormality. \n\nImpression: Three ingested magnets identified: two adherent in the stomach, one further along in the gastrointestinal tract. No radiographic evidence of obstruction or perforation at this time. "
+        },
+        "Patient Info - Imaging CXR": {
+            "imaging_name": "Chest X-Ray",
+            "imaging_description": "CXR Read: \n\nCardiac silhouette: Normal size and contour for age. \nMediastinum: Normal width; no evidence of mass or shift. \nLung fields: Clear bilaterally; no focal consolidation, infiltrates, or nodules. \nPleural spaces: No effusion or pneumothorax. \nDiaphragm: Normal position and contour; costophrenic angles sharp. \nBones and soft tissues: No acute osseous abnormalities; soft tissues unremarkable. \nAirways: Trachea midline; bronchi appear patent.\n\nImpression: Normal pediatric chest radiograph. No acute cardiopulmonary process. "
+        }
+    },
+    "key_information": [
+        {
+            "key_name": "No vomiting.",
+            "key_score": 1
+        },
+        {
+            "key_name": "No blood in stool.",
+            "key_score": 1
+        },
+        {
+            "key_name": "No past medical history.",
+            "key_score": 1
+        },
+        {
+            "key_name": "No current medications.",
+            "key_score": 1
+        },
+        {
+            "key_name": "Abdominal X-ray.",
+            "key_score": 2
+        },
+        {
+            "key_name": "(PUT IN ABD EXAM!)",
+            "key_score": 1
+        },
+        {
+            "key_name": "Ate 3 hours ago.",
+            "key_score": 1
+        }
+    ],
+    "key_interventions": [
+        {
+            "key_name": "Give peripheral IV.",
+            "key_score": 1
+        },
+        {
+            "key_name": "Make her NPO.",
+            "key_score": 1
+        }
+    ],
+    "scenario_questions": [
+        {
+            "question_text": "Any vomiting/emesis?",
+            "category": "Present Illness/Medical History",
+            "key_words": [
+                "vomit",
+                "emesis"
+            ],
+            "key_info_revealed": [
+                "No vomiting."
+            ],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "No."
+        },
+        {
+            "question_text": "Any blood in her stool/hematochezia?\u00a0",
+            "category": "Present Illness/Medical History",
+            "key_words": [
+                "blood",
+                "stool",
+                "hematochezia"
+            ],
+            "key_info_revealed": [
+                "No blood in stool."
+            ],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "No."
+        },
+        {
+            "question_text": "Does she have any past medical history?",
+            "category": "Present Illness/Medical History",
+            "key_words": [
+                "past",
+                "history"
+            ],
+            "key_info_revealed": [
+                "No past medical history."
+            ],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "No."
+        },
+        {
+            "question_text": "Does she take any medications?",
+            "category": "Present Illness/Medical History",
+            "key_words": [
+                "medication"
+            ],
+            "key_info_revealed": [
+                "No current medications."
+            ],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "No."
+        },
+        {
+            "question_text": "What does her KUB/abdominal x-ray/abdominal XR look like?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "KUB",
+                "abdominal",
+                "xray",
+                "x-ray",
+                "XR"
+            ],
+            "key_info_revealed": [
+                "Abdominal X-ray."
+            ],
+            "key_interventions_requested": [],
+            "patient_info_revealed": "Patient Info - Imaging Abd XR",
+            "responder_name": "OSH Doctor",
+            "responder_text": "I pushed the read, check the patient info tab."
+        },
+        {
+            "question_text": "When is the last time she ate?",
+            "category": "Present Illness/Medical History",
+            "key_words": [
+                "eat",
+                "ate",
+                "food"
+            ],
+            "key_info_revealed": [
+                "Ate 3 hours ago."
+            ],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "3 hours ago."
+        },
+        {
+            "question_text": "Can you make her NPO?",
+            "category": "Recommended Interventions",
+            "key_words": [
+                "NPO",
+                "eat",
+                "ate"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [
+                "Make her NPO."
+            ],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "Sure."
+        },
+        {
+            "question_text": "Can you get a peripheral IV?",
+            "category": "Recommended Interventions",
+            "key_words": [
+                "peripheral",
+                "IV"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [
+                "Give peripheral IV."
+            ],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "Sure."
+        },
+        {
+            "question_text": "Can I get her most recent vital signs?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "vital",
+                "recent",
+                "sign"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": "Patient Info - Vitals T1",
+            "responder_name": "OSH Doctor",
+            "responder_text": "I've sent them over, please check the patient info tab."
+        },
+        {
+            "question_text": "What does her chest XR/CXR/chest x-ray look like? ",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "XR",
+                "CXR",
+                "chest",
+                "xray",
+                "x-ray"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": "Patient Info - Imaging CXR",
+            "responder_name": "OSH Doctor",
+            "responder_text": "I pushed the read, check the patient info tab."
+        },
+        {
+            "question_text": "Did you get labs?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "labs",
+                "CBC",
+                "BMP",
+                "HFP",
+                "RFP",
+                "function",
+                "panel",
+                "count"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": null,
+            "responder_text": "No; she is stable and I didn't want to poke her. Our lab is broken and right now all of them are send out and take 4-6 hours to come back."
+        },
+        {
+            "question_text": "Can you put her on maintenance IV fluids?",
+            "category": "Recommended Interventions",
+            "key_words": [
+                "maintenance",
+                "IV",
+                "fluid"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "Sure."
+        },
+        {
+            "question_text": "Did she get a CT scan?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "CT",
+                "cat",
+                "scan",
+                "abdominal"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "Our CT machine has been down for weeks. No, she didn't. "
+        },
+        {
+            "question_text": "Did you get interval imaging?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "interval",
+                "xray",
+                "x-ray",
+                "XR"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "No, she only came in an hour ago."
+        },
+        {
+            "question_text": "How does the patient look on exam?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "exam"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "She looks great on exam. Breathing comfortably, normal breath sounds, normal oropharynx, no abdominal pain, normal bowel sounds, passing gas appropriately. She did have a bead in her ear that we removed. Kid likes to put things in holes they shouldn't be in\u2026"
+        },
+        {
+            "question_text": "What is the general appearance of the patient?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "general",
+                "exam"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "Alert and active. Well-nourished and well-developed."
+        },
+        {
+            "question_text": "What is the HEENT exam?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "HEENT",
+                "head",
+                "eye",
+                "ear",
+                "nose",
+                "throat",
+                "exam",
+                "membrane",
+                "moist",
+                "mucous",
+                "tympanic",
+                "pupil"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "Normocephalic, atraumatic. Pupils equal, round, reactive to light; extraocular movements intact; conjunctiva clear. External ears normal; tympanic membranes pearly gray, no effusion. Nares patent, mucosa moist, no discharge. Oral mucosa pink and moist; tonsils normal size; no lesions."
+        },
+        {
+            "question_text": "What is the cardiac exam?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "cardiology",
+                "cardiac",
+                "exam",
+                "rate"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "Regular rate and rhythm; normal S1 and S2; no murmurs, rubs, or gallops. Peripheral pulses 2+ and symmetric; capillary refill <2 seconds."
+        },
+        {
+            "question_text": "What is the respiratory exam?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "respiratory",
+                "work of breathing",
+                "retractions",
+                "rate",
+                "wheeze",
+                "clear",
+                "crackle",
+                "rhonchi",
+                "rale",
+                "exam"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "Comfortable on room air. Chest symmetric with no retractions. Lungs clear to auscultation bilaterally; no wheezes, rale, or rhonchi."
+        },
+        {
+            "question_text": "What is the abdominal exam?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "exam",
+                "abdomen",
+                "bowel",
+                "sound",
+                "intestine",
+                "spleen",
+                "tender",
+                "distend"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "Soft, non-tender, non-distended; bowel sounds present in all quadrants. No appreciable masses or hepatosplenomegaly."
+        },
+        {
+            "question_text": "What is the musculoskeletal exam?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "exam",
+                "MSK",
+                "musculoskeletal",
+                "joint",
+                "muscle",
+                "edema"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "Normal tone and strength; full range of motion in all joints"
+        },
+        {
+            "question_text": "What is the skin exam?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "Skin",
+                "exam",
+                "dermatologic",
+                "rash"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "Warm, dry, intact; no rashes."
+        },
+        {
+            "question_text": "What is the neuro exam?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "Exam",
+                "neuro",
+                "neurologic",
+                "cranial nerves",
+                "gait",
+                "symmetry"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "CN grossly intact, normal gait"
+        },
+        {
+            "question_text": "What is the GU exam?",
+            "category": "Exams, Labs, and Imaging",
+            "key_words": [
+                "Genitourinary",
+                "diaper",
+                "GU"
+            ],
+            "key_info_revealed": [],
+            "key_interventions_requested": [],
+            "patient_info_revealed": null,
+            "responder_name": "OSH Doctor",
+            "responder_text": "No rashes, normal genitalia."
+        }
+    ]
+}

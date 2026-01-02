@@ -22,7 +22,7 @@ import json
 parser = argparse.ArgumentParser(description="Parses scenario .xlsx file and outputs JSON structure for Transfer Tycoon.")
 parser.add_argument("--scenario_name", help="The SHEET name of the scenario to parse.", required=True)
 parser.add_argument("--download", help="Download the latest version of the .xlsx file from Google Docs.", action="store_true")
-
+parser.add_argument("--output_file", help="Output JSON file name.", default=None)
 
 def download_file(url, filename):
     print("Downloadeding latest from Google Docs.")
@@ -487,7 +487,12 @@ def main():
     # Close the workbook
     ws.parent.close()
 
-
+    # Output the scenario structure to a JSON file
+    output_file = args.output_file
+    if output_file:
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(scenario_structure, f, indent=4)
+        print(f"Scenario structure written to {output_file}")
 
 if __name__ == "__main__":
     main()
