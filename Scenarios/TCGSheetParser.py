@@ -3,7 +3,7 @@
 
 # This is the source of all the scenarios and the template.
 google_doc_source_url = "https://docs.google.com/spreadsheets/d/10lqPLwR30qosAy0OjrQBqxEXBDEfG7U3yyYBlrTgRxU/export?format=xlsx"
-file_name = "TestDownload.xlsx"
+file_name = "ScenariosGSheetDownload.xlsx"
 
 import requests
 from openpyxl import load_workbook
@@ -55,9 +55,9 @@ def open_workbook_sheet(filename, sheet_name):
     print(f"Opened workbook {filename}, sheet {sheet_name}")
     return ws
 
-def get_row_given_first_col_value(ws, search_value):
+def get_row_given_col_value(ws, search_value, col=1):
     for row in range(1, ws.max_row + 1):
-        if ws.cell(row=row, column=1).value == search_value:
+        if ws.cell(row=row, column=col).value == search_value:
             return row
     return None
 
@@ -93,10 +93,12 @@ def get_scenario_metadata(ws):
         "scenario_name": "",
         "scenario_description": "",
         "bed_status": "", # Must be one of: "red", "yellow", "green"
-        "bed_status_text": ""
+        "bed_status_text": "",
+        "introduction_transfer_center": "",
+        "introduction_osh_doctor": ""
     }
 
-    row = get_row_given_first_col_value(ws, "Scenario Name")
+    row = get_row_given_col_value(ws, "Scenario Name")
     if row is None:
         raise ValueError("Could not find 'Scenario Name' in the first column.")
 
@@ -109,6 +111,12 @@ def get_scenario_metadata(ws):
     valid_bed_status = ["red", "yellow", "green"]
     if scenario_metadata["bed_status"] not in valid_bed_status:
         raise ValueError(f"Invalid bed status: {scenario_metadata['bed_status']}. Must be one of {valid_bed_status}")
+
+    row = get_row_given_col_value(ws, "Introduction")
+    if row is None:
+        raise ValueError("Could not find 'Introduction' in the first column.")
+    scenario_metadata["introduction_transfer_center"] = ws.cell(row=row, column=3).value
+    scenario_metadata["introduction_osh_doctor"] = ws.cell(row=row+1, column=3).value
 
     return scenario_metadata
 
@@ -137,7 +145,7 @@ def get_dispositions(ws):
     # There are 4+ dispositions every time, so we can loop through them.
 
     # Find the dispositions row first.
-    dispositions_row = get_row_given_first_col_value(ws, "Dispositions")
+    dispositions_row = get_row_given_col_value(ws, "Dispositions")
     if dispositions_row is None:
         raise ValueError("Could not find 'Dispositions' in the first column.")
 
@@ -194,11 +202,11 @@ def get_dispositions(ws):
 
 def get_patient_info_vitals(ws):
 
-    vitals_t1_row = get_row_given_first_col_value(ws, "Patient Info - Vitals T1")
+    vitals_t1_row = get_row_given_col_value(ws, "Patient Info - Vitals T1")
     if vitals_t1_row is None:
         raise ValueError("Could not find 'Patient Info - Vitals T1' in the first column.")
 
-    vitals_t2_row = get_row_given_first_col_value(ws, "Patient Info - Vitals T2")
+    vitals_t2_row = get_row_given_col_value(ws, "Patient Info - Vitals T2")
     if vitals_t2_row is None:
         raise ValueError("Could not find 'Patient Info - Vitals T2' in the first column.")
 
@@ -236,10 +244,10 @@ def get_patient_info_vitals(ws):
 def get_patient_info_labs(ws):
 
     # Labs T1 and T2 are variable length sections, we can't do much validation here.
-    labs_t1_row = get_row_given_first_col_value(ws, "Patient Info - Labs T1")
+    labs_t1_row = get_row_given_col_value(ws, "Patient Info - Labs T1")
     if labs_t1_row is None:
         raise ValueError("Could not find 'Patient Info - Labs T1' in the first column.")
-    labs_t2_row = get_row_given_first_col_value(ws, "Patient Info - Labs T2")
+    labs_t2_row = get_row_given_col_value(ws, "Patient Info - Labs T2")
     if labs_t2_row is None:
         raise ValueError("Could not find 'Patient Info - Labs T2' in the first column.")
     
@@ -289,12 +297,28 @@ def get_patient_info_imaging(ws):
     
     return imaging
 
+def get_all_patient_info(ws):
+    patient_info_vitals = get_patient_info_vitals(ws)
+    patient_info_labs = get_patient_info_labs(ws)
+    patient_info_imaging = get_patient_info_imaging(ws)
+
+    # Concatenate all patient info entries into a single structure
+    patient_info = {}
+    for key, value in patient_info_vitals.items():
+        patient_info.update({key: value})
+    for key, value in patient_info_labs.items():
+        patient_info.update({key: value})
+    for key, value in patient_info_imaging.items():
+        patient_info.update({key: value})
+    
+    return patient_info
+
 def get_key_info_(ws,  section_title):
 
     # Key Information and Key Interventions have the same structure.
     # Column B is the name, Column C is the score.
 
-    key_info_row = get_row_given_first_col_value(ws, section_title)
+    key_info_row = get_row_given_col_value(ws, section_title)
     if key_info_row is None:
         raise ValueError(f"Could not find '{section_title}' in the first column.")
     
@@ -334,7 +358,7 @@ def get_scenario_questions(ws, key_info, key_interventions, patient_info):
     # Starts on the next row after "Scenario Questions"
     # Columns: Question Text, Category, Key words, Key Info Revealed, Patient Info Revealed, Name of Responder, Responder Text
 
-    questions_row = get_row_given_first_col_value(ws, "Scenario Questions")
+    questions_row = get_row_given_col_value(ws, "Scenario Questions")
     if questions_row is None:
         raise ValueError("Could not find 'Scenario Questions' in the first column.")
     questions_row += 1  # Move to the next row
@@ -394,7 +418,7 @@ def get_scenario_questions(ws, key_info, key_interventions, patient_info):
                 row_number = int(''.join(filter(str.isdigit, patient_info_revealed)))
                 column_number = ord(column_letter.upper()) - ord('A') + 1
                 patient_info_revealed = ws.cell(row=row_number, column=column_number).value
-                print("Resolved patient info revealed to:", patient_info_revealed)
+                print("Resolved to:", patient_info_revealed)
             # else:
                 # ValueError("Patient info revealed must be a cell link starting with '='. Question text: {question_text}")
 
@@ -438,25 +462,8 @@ def main():
     dispositions = get_dispositions(ws)
     # print("Dispositions:", json.dumps(dispositions, indent=4))
 
-    patient_info_vitals = get_patient_info_vitals(ws)
-    # print("Patient Info Vitals:", json.dumps(patient_info_vitals, indent=4))
-
-    patient_info_labs = get_patient_info_labs(ws)
-    # print("Patient Info Labs:", json.dumps(patient_info_labs, indent=4))
-
-    patient_info_imaging = get_patient_info_imaging(ws)
-    # print("Patient Info Imaging:", json.dumps(patient_info_imaging, indent=4))
-
-    # Concatenate all patient info entries into a single structure
-    patient_info = {}
-    for key, value in patient_info_vitals.items():
-        patient_info.update({key: value})
-    for key, value in patient_info_labs.items():
-        patient_info.update({key: value})
-    for key, value in patient_info_imaging.items():
-        patient_info.update({key: value})
+    patient_info = get_all_patient_info(ws)
     # print("Patient Info:", json.dumps(patient_info, indent=4))
-
 
     key_information = get_key_information(ws)
     #print("Key Information:", json.dumps(key_information, indent=4))
@@ -465,7 +472,17 @@ def main():
     #print("Key Interventions:", json.dumps(key_interventions, indent=4))
 
     scenario_questions = get_scenario_questions(ws, key_information, key_interventions, patient_info)
-    print("Scenario Questions:", json.dumps(scenario_questions, indent=4))
+    # print("Scenario Questions:", json.dumps(scenario_questions, indent=4))
+
+    # Combine all into a single scenario structure
+    scenario_structure = {
+        "metadata": meta_data,
+        "dispositions": dispositions,
+        "patient_info": patient_info,
+        "key_information": key_information,
+        "key_interventions": key_interventions,
+        "scenario_questions": scenario_questions
+    }
 
     # Close the workbook
     ws.parent.close()
