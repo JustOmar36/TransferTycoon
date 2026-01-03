@@ -43,6 +43,7 @@ public class PCScript : MonoBehaviour
     public GameObject labsInfo;
     public GameObject endScreen;
     public GameObject backend;
+    public GameObject playerInputField;
 
     private TextMeshProUGUI _textMesh;
     private TextMeshProUGUI _patientTextMesh;
@@ -341,6 +342,7 @@ public class PCScript : MonoBehaviour
     {
         _textMesh.text = "";
         _textToAdd.Clear();
+        playerInputField.GetComponentInChildren<TMP_InputField>().text = "";
     }
     #endregion text
     

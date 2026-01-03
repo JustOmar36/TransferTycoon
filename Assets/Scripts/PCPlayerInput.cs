@@ -6,21 +6,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Rendering.RenderGraphModule;
 
 public class PCPlayerInput : MonoBehaviour
 {
     public GameObject topicSelector;
     public GameObject questionInput;
     public GameObject pc;
-    //list of all the buttons that are used for player input, each is an option for what to say based on the keyword
-    public GameObject[] options;
     
     public GameObject scenarioManager;
     private GameBackend _backend;
     
     private PCScript _pcScript;
-    //boolean for tracking if the player is currently interacting with the input text box
-    private bool _interacting = false;
+
+    [Header("Player Options")]
+    public GameObject OptionPrefab;
+    public Transform ContentParent;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -34,33 +35,17 @@ public class PCPlayerInput : MonoBehaviour
         
         _pcScript = pc.GetComponent<PCScript>();
         DisableOptions();
-        
     }
 
     
     private void Update()
     {
-        if (_interacting == true && questionInput.GetComponent<TMP_InputField>().text != "")
-        {
-            ShowOptions();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Mouse0) || _interacting == false || questionInput.GetComponent<TMP_InputField>().text == "")
+        // passes only if we click on a non-option or if our input field is back to being empty
+        if (Input.GetKeyDown(KeyCode.Mouse0) || questionInput.GetComponent<TMP_InputField>().text == "")
         {
             DisableOptions();
         }
-    }
 
-    // called whenever the player starts interacting with the text input
-    public void StartInteraction()
-    {
-        _interacting = true;
-    }
-
-    //called whenever the player stops interacting with the text input
-    public void StopInteraction()
-    {
-        _interacting = false;
     }
     
     //disables the buttons that show input options in order to hide them from the screen
@@ -74,19 +59,20 @@ public class PCPlayerInput : MonoBehaviour
     //helper function for DisableOptions to do the actual disabling
     void Disable()
     {
-        foreach (var option in options)
+        // Each Option is a unique prefab
+        // Destroy any unnecessary prefabs to ensure to duplicates
+        foreach (Transform child in ContentParent)
         {
-            option.GetComponentInChildren<TextMeshProUGUI>().text = "";
-            option.SetActive(false);
+            Destroy(child.gameObject);
         }
     }
 
-    //Shows and updates all options for player input
+    // Shows and updates all options for player input
+    // Called on Panel-PlayerInput's Input Field (TMP) GameObject if the text field has changed
     public void ShowOptions()
     {
         Disable();
         string topic = "";
-        var currentOption = 0; 
         //switch for determining what topic the player has selected so only things in that topic will be shown
         switch (topicSelector.GetComponent<TMP_Dropdown>().value)
         {
@@ -123,50 +109,41 @@ public class PCPlayerInput : MonoBehaviour
 
             //checks to see if any of the matches of this element include the string the player typed
             foreach (var matches in _backend.visibleElements[i].Matches) {
-                    if (matches.Contains(questionInput.GetComponent<TMP_InputField>().text))
+                if (matches.Contains(questionInput.GetComponent<TMP_InputField>().text))
+                {
+                    GameObject option = Instantiate(OptionPrefab, ContentParent);
+                    TMP_Text optionText = option.GetComponentInChildren<TMP_Text>();
+                    optionText.text = _backend.visibleElements[i].LearnerResponse[2];
+                    option.SetActive(true);
+                    
+                    // Add Event Listenr to Invoke Check Drop Down Value function on each new Match Option Prefab
+                    var btn = option.GetComponentInChildren<Button>(true);
+                    if (btn != null)
                     {
-                        options[currentOption].GetComponentInChildren<TextMeshProUGUI>().text = _backend.visibleElements[i].LearnerResponse[2];
-                        options[currentOption].SetActive(true);
-                        currentOption++; 
-                        break;
+                        btn.onClick.AddListener(() => CheckDropdownValue(optionText.text));
+                        Debug.Log($"Added onClick listener to a Match option based on player Input");
                     }
+                    else {
+                        Debug.LogWarning($"Error finding Button Component for option: {optionText.text}");
+                    }
+                    break;
+                }
             }
         };
-        {
-            if (currentOption >= options.Length) return;
-        }
     }
 
-    //used to read what is in a given option
-    //This function is written really poorly, idk what I was doing when I wrote it
+    // Function to call Parse Input on a valid Input Option
     public void CheckDropdownValue(string option)
     {
-        string output = "";
-        
-        switch (option)
+        if (option != null)
         {
-            case "Option1":
-            {
-                output = options[0].GetComponentInChildren<TextMeshProUGUI>().text;
-                break;
-            }
-            case "Option2":
-            {
-                output = options[1].GetComponentInChildren<TextMeshProUGUI>().text;
-                break;
-            }
-            case "Option3":
-            {
-                output = options[2].GetComponentInChildren<TextMeshProUGUI>().text;
-                break;
-            }
-            case "Option4":
-            {
-                output = options[3].GetComponentInChildren<TextMeshProUGUI>().text;
-                break;
-            }
+            Debug.Log($"{option} Clicked. Parsing Option");
+            questionInput.GetComponent<TMP_InputField>().text = "";
+            _pcScript.ParseInput(option);
         }
-        _pcScript.ParseInput(output);
-        
+        else {
+            Debug.LogWarning("Check Drop Down Value Function called with Null Option");
+        }
+
     }
 }
